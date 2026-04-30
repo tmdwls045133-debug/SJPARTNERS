@@ -93,8 +93,8 @@ export default function FundingPage() {
                     </p>
                     <div className="text-xs text-slate-600 mt-2 space-y-1">
                       <p>담당: {funding.manager}</p>
-                      <p>마감: {funding.dueDate}</p>
-                      <p>서류: {funding.documents.submitted}/{funding.documents.total}</p>
+                      <p>마감: {funding.due_date}</p>
+                      <p>서류: {funding.documents_submitted}/{funding.documents_total}</p>
                     </div>
                   </div>
                 ))}
@@ -150,7 +150,7 @@ export default function FundingPage() {
                   {funding.manager}
                 </td>
                 <td className="px-6 py-4 text-sm text-slate-600">
-                  {funding.dueDate}
+                  {funding.due_date}
                 </td>
                 <td className="px-6 py-4 text-sm">
                   <div className="flex items-center gap-2">
@@ -159,15 +159,15 @@ export default function FundingPage() {
                         className="bg-green-600 h-2 rounded-full"
                         style={{
                           width: `${
-                            (funding.documents.submitted /
-                              funding.documents.total) *
+                            (funding.documents_submitted /
+                              funding.documents_total) *
                             100
                           }%`,
                         }}
                       />
                     </div>
                     <span className="text-xs text-slate-600">
-                      {funding.documents.submitted}/{funding.documents.total}
+                      {funding.documents_submitted}/{funding.documents_total}
                     </span>
                   </div>
                 </td>
