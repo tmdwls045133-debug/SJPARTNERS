@@ -39,17 +39,19 @@ export async function POST(request: Request) {
           email: email,
           name: name,
           role: "sales",
-          status: "pending", // 대표자 승인 대기
-          created_at: new Date(),
+          status: "pending",
         });
 
       if (dbError) {
         console.error("DB insert error:", dbError);
+        return NextResponse.json(
+          { error: `데이터베이스 저장 실패: ${dbError.message}` },
+          { status: 400 }
+        );
       }
 
-      // 대표자에게 알림 보내기
+      // 대표자에게 알림 보내기 (선택사항 - 실패해도 무시)
       try {
-        // 첫 admin 사용자 찾기 (첫 가입자는 자동 admin)
         const { data: adminUsers } = await supabase
           .from("users_roles")
           .select("user_id")
