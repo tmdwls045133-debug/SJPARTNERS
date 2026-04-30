@@ -38,7 +38,7 @@ export default function CustomersPage() {
     return <div className="text-center py-8">로딩 중...</div>;
   }
 
-  if (role !== "sales") {
+  if (role !== "sales" && role !== "admin") {
     return (
       <div className="flex items-center justify-center min-h-96">
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-8 text-center max-w-md">
@@ -47,7 +47,7 @@ export default function CustomersPage() {
             접근 권한 없음
           </h2>
           <p className="text-amber-800">
-            고객 관리는 영업팀만 접근할 수 있습니다.
+            고객 관리는 영업팀과 관리자만 접근할 수 있습니다.
           </p>
         </div>
       </div>

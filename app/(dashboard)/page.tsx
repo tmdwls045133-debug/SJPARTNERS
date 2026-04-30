@@ -27,6 +27,7 @@ export default function Dashboard() {
   const [cases, setCases] = useState<FundingCase[]>([]);
   const [loading, setLoading] = useState(true);
   const isSales = role === "sales";
+  const isManagement = role === "management" || role === "admin";
 
   useEffect(() => {
     fetchData();

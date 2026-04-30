@@ -34,7 +34,7 @@ export default function FundingPage() {
     }
   }
 
-  if (role !== "management") {
+  if (role !== "management" && role !== "admin") {
     return (
       <div className="flex items-center justify-center min-h-96">
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-8 text-center max-w-md">
@@ -43,7 +43,7 @@ export default function FundingPage() {
             접근 권한 없음
           </h2>
           <p className="text-amber-800">
-            자금신청 진행현황은 관리팀만 접근할 수 있습니다.
+            자금신청 진행현황은 관리팀과 관리자만 접근할 수 있습니다.
           </p>
         </div>
       </div>
