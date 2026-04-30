@@ -3,8 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const { role } = await request.json();
 
@@ -18,7 +19,7 @@ export async function PUT(
     const { data, error } = await supabase
       .from("users_roles")
       .update({ role })
-      .eq("user_id", params.id)
+      .eq("user_id", id)
       .select();
 
     if (error) {
