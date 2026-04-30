@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -10,6 +11,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { useRoleStore } from "@/lib/useRole";
+import { useAuthStore } from "@/lib/useAuth";
 
 const salesMenuItems = [
   {
@@ -48,10 +50,17 @@ const managementMenuItems = [
 ];
 
 export default function Sidebar() {
+  const router = useRouter();
   const pathname = usePathname();
   const { role, setRole } = useRoleStore();
+  const { logout } = useAuthStore();
 
   const menuItems = role === "sales" ? salesMenuItems : managementMenuItems;
+
+  async function handleLogout() {
+    await logout();
+    router.push("/login");
+  }
 
   return (
     <aside className="w-64 bg-slate-900 text-white h-screen flex flex-col">
@@ -111,6 +120,13 @@ export default function Sidebar() {
             관리팀
           </button>
         </div>
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition-colors text-sm font-medium"
+        >
+          <LogOut size={16} />
+          로그아웃
+        </button>
       </div>
     </aside>
   );
