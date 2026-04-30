@@ -56,7 +56,7 @@ export default function RegisterPage() {
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900">
-            정책자금 컨설팅
+            SJPARTNERS
           </h1>
           <p className="text-slate-600 mt-2">회원가입</p>
         </div>

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "정책자금 컨설팅 전산",
-  description: "정책자금 컨설팅 회사 내부 전산 시스템",
+  title: "SJPARTNERS",
+  description: "SJPARTNERS 내부 전산 시스템",
 };
 
 export default function RootLayout({
@@ -33,7 +33,7 @@ export default function RootLayout({
         <main className="flex-1 flex flex-col">
           <header className="bg-white border-b border-slate-200 px-8 py-4">
             <h2 className="text-lg font-semibold text-slate-800">
-              정책자금 컨설팅 전산
+              SJPARTNERS
             </h2>
           </header>
           <div className="flex-1 overflow-auto p-8">{children}</div>

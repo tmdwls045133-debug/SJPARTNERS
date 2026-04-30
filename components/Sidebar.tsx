@@ -99,8 +99,8 @@ export default function Sidebar() {
   return (
     <aside className="w-64 bg-slate-900 text-white h-screen flex flex-col">
       <div className="p-6 border-b border-slate-700">
-        <h1 className="text-xl font-bold">정책자금 전산</h1>
-        <p className="text-xs text-slate-400 mt-1">SJ Partners</p>
+        <h1 className="text-xl font-bold">SJPARTNERS</h1>
+        <p className="text-xs text-slate-400 mt-1">내부 전산 시스템</p>
       </div>
 
       <nav className="flex-1 p-4">
