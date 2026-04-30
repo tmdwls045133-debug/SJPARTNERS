@@ -130,12 +130,12 @@ export default function Sidebar() {
 
       <div className="p-4 border-t border-slate-700 space-y-3">
         <div className="text-xs text-slate-400">
-          현재: {role === "sales" ? "영업팀" : "관리팀"}
+          현재: {role === "sales" ? "영업팀" : role === "management" ? "관리팀" : "대표자"}
         </div>
-        <div className="flex gap-2">
+        <div className="grid grid-cols-3 gap-2">
           <button
             onClick={() => setRole("sales")}
-            className={`flex-1 text-xs py-2 rounded transition-colors ${
+            className={`text-xs py-2 rounded transition-colors ${
               role === "sales"
                 ? "bg-blue-600 text-white"
                 : "bg-slate-700 text-slate-300 hover:bg-slate-600"
@@ -145,13 +145,23 @@ export default function Sidebar() {
           </button>
           <button
             onClick={() => setRole("management")}
-            className={`flex-1 text-xs py-2 rounded transition-colors ${
+            className={`text-xs py-2 rounded transition-colors ${
               role === "management"
                 ? "bg-blue-600 text-white"
                 : "bg-slate-700 text-slate-300 hover:bg-slate-600"
             }`}
           >
             관리팀
+          </button>
+          <button
+            onClick={() => setRole("admin")}
+            className={`text-xs py-2 rounded transition-colors ${
+              role === "admin"
+                ? "bg-blue-600 text-white"
+                : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+            }`}
+          >
+            대표자
           </button>
         </div>
         <button
