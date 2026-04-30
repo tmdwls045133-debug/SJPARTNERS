@@ -88,7 +88,7 @@ export default function ContractsPage() {
                   {contract.service}
                 </td>
                 <td className="px-6 py-4 text-sm text-slate-600 font-semibold">
-                  {contract.expectedAmount}원
+                  {contract.expected_amount}원
                 </td>
                 <td className="px-6 py-4 text-sm">
                   <button className="text-blue-600 hover:text-blue-800 font-medium">
