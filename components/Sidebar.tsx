@@ -9,6 +9,7 @@ import {
   FileText,
   Kanban,
   LogOut,
+  Settings,
 } from "lucide-react";
 import { useRoleStore } from "@/lib/useRole";
 import { useAuthStore } from "@/lib/useAuth";
@@ -49,13 +50,46 @@ const managementMenuItems = [
   },
 ];
 
+const adminMenuItems = [
+  {
+    name: "대시보드",
+    href: "/",
+    icon: LayoutDashboard,
+  },
+  {
+    name: "고객 관리",
+    href: "/customers",
+    icon: Users,
+  },
+  {
+    name: "계약 관리",
+    href: "/contracts",
+    icon: FileText,
+  },
+  {
+    name: "진행현황",
+    href: "/funding",
+    icon: Kanban,
+  },
+  {
+    name: "사용자 관리",
+    href: "/admin/users",
+    icon: Settings,
+  },
+];
+
 export default function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
   const { role, setRole } = useRoleStore();
   const { logout } = useAuthStore();
 
-  const menuItems = role === "sales" ? salesMenuItems : managementMenuItems;
+  const menuItems =
+    role === "sales"
+      ? salesMenuItems
+      : role === "management"
+      ? managementMenuItems
+      : adminMenuItems;
 
   async function handleLogout() {
     await logout();
