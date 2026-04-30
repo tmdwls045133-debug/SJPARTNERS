@@ -151,7 +151,7 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50"
           >
-            {loading ? "로그인 중..." : "로그인"}
+            로그인
           </button>
         </form>
 
@@ -183,8 +183,12 @@ export default function LoginPage() {
             </div>
 
             {registerSuccess && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-6 text-sm text-green-700">
-                ✅ 회원가입 성공! 로그인해주세요.
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 text-center">
+                <div className="text-2xl mb-2">✅</div>
+                <p className="text-green-800 font-semibold mb-2">가입 신청이 완료되었습니다!</p>
+                <p className="text-green-700 text-sm">
+                  대표자의 승인 후 접속이 가능합니다.
+                </p>
               </div>
             )}
 

@@ -112,73 +112,59 @@ export default function UsersManagementPage() {
     <div className="space-y-6">
       <h1 className="text-3xl font-bold text-slate-900">사용자 관리</h1>
 
-      {/* 승인 대기 섹션 */}
+      {/* 승인 요청 섹션 */}
       {pendingUsers.length > 0 && (
         <div>
           <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-            🔔 승인 대기 ({pendingUsers.length})
+            🔔 승인 요청 ({pendingUsers.length})
           </h2>
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-yellow-100 border-b border-yellow-200">
-                <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-slate-900">
-                    이름
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-slate-900">
-                    이메일
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-slate-900">
-                    할당 역할
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-slate-900">
-                    가입일
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-slate-900">
-                    액션
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-yellow-200">
-                {pendingUsers.map((user) => (
-                  <tr key={user.user_id} className="hover:bg-yellow-100">
-                    <td className="px-6 py-4 text-sm text-slate-900 font-medium">
+          <div className="grid gap-4">
+            {pendingUsers.map((user) => (
+              <div
+                key={user.user_id}
+                className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-6"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <p className="text-lg font-bold text-slate-900">
                       {user.name}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-slate-600">
-                      {user.email}
-                    </td>
-                    <td className="px-6 py-4 text-sm">
-                      <select
-                        defaultValue="sales"
-                        onChange={(e) => {
-                          (e.target as any).dataset.role = e.target.value;
-                        }}
-                        className="px-3 py-1 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      >
-                        <option value="sales">영업팀</option>
-                        <option value="management">관리팀</option>
-                      </select>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-slate-600">
-                      {new Date(user.created_at).toLocaleDateString("ko-KR")}
-                    </td>
-                    <td className="px-6 py-4 text-sm">
-                      <button
-                        onClick={(e) => {
-                          const select = (e.target as HTMLElement).parentElement?.querySelector('select') as HTMLSelectElement;
-                          approveUser(user.user_id, select?.value || "sales");
-                        }}
-                        disabled={updating === user.user_id}
-                        className="bg-green-600 text-white px-3 py-1 rounded font-medium hover:bg-green-700 disabled:opacity-50"
-                      >
-                        {updating === user.user_id ? "승인 중..." : "승인"}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    </p>
+                    <p className="text-sm text-slate-600 mt-1">
+                      📧 {user.email}
+                    </p>
+                    <p className="text-sm text-slate-600 mt-1">
+                      📅 {new Date(user.created_at).toLocaleDateString("ko-KR", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </p>
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <select
+                      defaultValue="sales"
+                      id={`role-select-${user.user_id}`}
+                      className="px-3 py-2 rounded-lg border border-slate-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="sales">👤 영업팀</option>
+                      <option value="management">👥 관리팀</option>
+                    </select>
+                    <button
+                      onClick={() => {
+                        const select = document.getElementById(
+                          `role-select-${user.user_id}`
+                        ) as HTMLSelectElement;
+                        approveUser(user.user_id, select?.value || "sales");
+                      }}
+                      disabled={updating === user.user_id}
+                      className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700 disabled:opacity-50 transition"
+                    >
+                      {updating === user.user_id ? "승인 중..." : "✓ 승인"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       )}
