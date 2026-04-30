@@ -82,7 +82,7 @@ export default function ContractsPage() {
                   {contract.company}
                 </td>
                 <td className="px-6 py-4 text-sm text-slate-600">
-                  {contract.contractDate}
+                  {contract.contract_date}
                 </td>
                 <td className="px-6 py-4 text-sm text-slate-600">
                   {contract.service}
