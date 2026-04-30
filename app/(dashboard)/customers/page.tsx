@@ -92,7 +92,7 @@ export default function CustomersPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-200">
-            {mockCustomers.map((customer) => (
+            {customers.map((customer) => (
               <tr key={customer.id} className="hover:bg-slate-50">
                 <td className="px-6 py-4 text-sm text-slate-900 font-medium">
                   {customer.company}
