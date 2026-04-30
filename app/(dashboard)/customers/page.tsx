@@ -104,7 +104,7 @@ export default function CustomersPage() {
                   {customer.phone}
                 </td>
                 <td className="px-6 py-4 text-sm text-slate-600">
-                  {customer.consultDate}
+                  {customer.consult_date}
                 </td>
                 <td className="px-6 py-4 text-sm">
                   <span
