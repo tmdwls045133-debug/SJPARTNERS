@@ -12,7 +12,7 @@ export default function LoginPage() {
   const { setRole } = useRoleStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRoleLocal] = useState<"sales" | "management">("sales");
+  const [role, setRoleLocal] = useState<"sales" | "management" | "admin">("sales");
   const [error, setError] = useState("");
 
   // 회원가입 모달 상태
@@ -143,6 +143,7 @@ export default function LoginPage() {
             >
               <option value="sales">👤 영업팀</option>
               <option value="management">👥 관리팀</option>
+              <option value="admin">👑 대표자</option>
             </select>
           </div>
 
