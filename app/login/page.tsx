@@ -32,7 +32,7 @@ export default function LoginPage() {
     try {
       await login(email, password);
       setRole(role);
-      router.push("/");
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message || "로그인 실패");
     }

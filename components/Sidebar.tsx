@@ -15,67 +15,23 @@ import { useRoleStore } from "@/lib/useRole";
 import { useAuthStore } from "@/lib/useAuth";
 
 const salesMenuItems = [
-  {
-    name: "대시보드",
-    href: "/",
-    icon: LayoutDashboard,
-  },
-  {
-    name: "고객 관리",
-    href: "/customers",
-    icon: Users,
-  },
-  {
-    name: "계약 관리",
-    href: "/contracts",
-    icon: FileText,
-  },
+  { name: "대시보드", href: "/dashboard", icon: LayoutDashboard },
+  { name: "고객 관리", href: "/dashboard/customers", icon: Users },
+  { name: "계약 관리", href: "/dashboard/contracts", icon: FileText },
 ];
 
 const managementMenuItems = [
-  {
-    name: "대시보드",
-    href: "/",
-    icon: LayoutDashboard,
-  },
-  {
-    name: "계약 관리",
-    href: "/contracts",
-    icon: FileText,
-  },
-  {
-    name: "진행현황",
-    href: "/funding",
-    icon: Kanban,
-  },
+  { name: "대시보드", href: "/dashboard", icon: LayoutDashboard },
+  { name: "계약 관리", href: "/dashboard/contracts", icon: FileText },
+  { name: "진행현황", href: "/dashboard/funding", icon: Kanban },
 ];
 
 const adminMenuItems = [
-  {
-    name: "대시보드",
-    href: "/",
-    icon: LayoutDashboard,
-  },
-  {
-    name: "고객 관리",
-    href: "/customers",
-    icon: Users,
-  },
-  {
-    name: "계약 관리",
-    href: "/contracts",
-    icon: FileText,
-  },
-  {
-    name: "진행현황",
-    href: "/funding",
-    icon: Kanban,
-  },
-  {
-    name: "사용자 관리",
-    href: "/admin/users",
-    icon: Settings,
-  },
+  { name: "대시보드", href: "/dashboard", icon: LayoutDashboard },
+  { name: "고객 관리", href: "/dashboard/customers", icon: Users },
+  { name: "계약 관리", href: "/dashboard/contracts", icon: FileText },
+  { name: "진행현황", href: "/dashboard/funding", icon: Kanban },
+  { name: "사용자 관리", href: "/dashboard/admin/users", icon: Settings },
 ];
 
 export default function Sidebar() {
