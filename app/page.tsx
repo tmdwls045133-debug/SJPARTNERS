@@ -72,8 +72,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* 히어로 카드들 */}
+            {/* 히어로 - 사진 + 카드들 */}
             <div className="hidden md:block relative h-[520px]">
+              {/* 프로필 사진 */}
+              <div className="absolute inset-y-0 left-8 w-64 rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
+                <img src="/hero.jpg" alt="대표 컨설턴트" className="w-full h-full object-cover object-top" />
+              </div>
               <div className="absolute top-0 right-0 w-72 bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20 shadow-2xl">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm">✓</div>
