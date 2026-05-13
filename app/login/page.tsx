@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type RoleTab = "sales" | "ops" | "ceo";
 
@@ -115,6 +116,12 @@ export default function LoginPage() {
 
         <div className="mt-5 text-center text-xs text-slate-400">
           계정 문의는 대표자에게 연락하세요
+        </div>
+
+        <div className="mt-3 text-center">
+          <Link href="/" className="text-xs text-blue-500 hover:text-blue-700 transition">
+            ← 홈페이지로 돌아가기
+          </Link>
         </div>
       </div>
     </div>
