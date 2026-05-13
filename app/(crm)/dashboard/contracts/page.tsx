@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRoleStore } from "@/lib/useRole";
+import { useSession } from "next-auth/react";
 
 interface Contract {
   id: number;
@@ -12,7 +12,8 @@ interface Contract {
 }
 
 export default function ContractsPage() {
-  const { role } = useRoleStore();
+  const { data: session } = useSession();
+  const role = (session?.user as any)?.role;
   const [contracts, setContracts] = useState<Contract[]>([]);
   const [loading, setLoading] = useState(true);
   const isSales = role === "sales";

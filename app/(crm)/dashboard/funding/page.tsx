@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRoleStore } from "@/lib/useRole";
+import { useSession } from "next-auth/react";
 
 interface FundingCase {
   id: number;
@@ -14,7 +14,8 @@ interface FundingCase {
 }
 
 export default function FundingPage() {
-  const { role } = useRoleStore();
+  const { data: session } = useSession();
+  const role = (session?.user as any)?.role;
   const [cases, setCases] = useState<FundingCase[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +35,7 @@ export default function FundingPage() {
     }
   }
 
-  if (role !== "management" && role !== "admin") {
+  if (role !== "ops" && role !== "ceo") {
     return (
       <div className="flex items-center justify-center min-h-96">
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-8 text-center max-w-md">

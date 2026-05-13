@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRoleStore } from "@/lib/useRole";
+import { useSession } from "next-auth/react";
 
 interface Customer {
   id: number;
@@ -21,13 +21,14 @@ interface FundingCase {
 }
 
 export default function Dashboard() {
-  const { role } = useRoleStore();
+  const { data: session } = useSession();
+  const role = (session?.user as any)?.role;
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [contracts, setContracts] = useState<Contract[]>([]);
   const [cases, setCases] = useState<FundingCase[]>([]);
   const [loading, setLoading] = useState(true);
   const isSales = role === "sales";
-  const isManagement = role === "management" || role === "admin";
+  const isManagement = role === "ops" || role === "ceo";
 
   useEffect(() => {
     fetchData();

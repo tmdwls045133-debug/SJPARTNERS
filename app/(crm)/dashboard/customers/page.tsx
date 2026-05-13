@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRoleStore } from "@/lib/useRole";
+import { useSession } from "next-auth/react";
 
 interface Customer {
   id: number;
@@ -14,7 +14,8 @@ interface Customer {
 }
 
 export default function CustomersPage() {
-  const { role } = useRoleStore();
+  const { data: session } = useSession();
+  const role = (session?.user as any)?.role;
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -38,7 +39,7 @@ export default function CustomersPage() {
     return <div className="text-center py-8">로딩 중...</div>;
   }
 
-  if (role !== "sales" && role !== "admin") {
+  if (role !== "sales" && role !== "ceo") {
     return (
       <div className="flex items-center justify-center min-h-96">
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-8 text-center max-w-md">
