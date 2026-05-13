@@ -72,14 +72,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* 히어로 - 사진 + 카드들 */}
-            <div className="hidden md:flex relative h-[520px] items-end gap-4">
-              {/* 프로필 사진 */}
-              <div className="relative h-[480px] w-52 flex-shrink-0 rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
-                <img src="/hero.jpg" alt="대표 컨설턴트" className="w-full h-full object-cover object-top" />
-              </div>
-              {/* 카드들 */}
-              <div className="flex-1 relative h-[520px]">
+            {/* 히어로 카드들 */}
+            <div className="hidden md:block relative h-[520px]">
               <div className="absolute top-0 right-0 w-64 bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20 shadow-2xl">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm">✓</div>
@@ -116,7 +110,6 @@ export default function HomePage() {
                 </div>
                 <p className="text-white text-xs font-semibold">500+ 고객사</p>
                 <p className="text-slate-400 text-xs">와 함께하고 있습니다</p>
-              </div>
               </div>
             </div>
           </div>
