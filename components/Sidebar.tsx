@@ -11,8 +11,7 @@ import {
   LogOut,
   Settings,
 } from "lucide-react";
-import { useRoleStore } from "@/lib/useRole";
-import { useAuthStore } from "@/lib/useAuth";
+import { signOut, useSession } from "next-auth/react";
 
 const salesMenuItems = [
   { name: "대시보드", href: "/dashboard", icon: LayoutDashboard },
@@ -35,10 +34,9 @@ const adminMenuItems = [
 ];
 
 export default function Sidebar() {
-  const router = useRouter();
   const pathname = usePathname();
-  const { role, setRole } = useRoleStore();
-  const { logout } = useAuthStore();
+  const { data: session } = useSession();
+  const role = (session?.user as any)?.role ?? "sales";
 
   const menuItems =
     role === "sales"
@@ -47,9 +45,11 @@ export default function Sidebar() {
       ? managementMenuItems
       : adminMenuItems;
 
+  const roleLabel =
+    role === "sales" ? "영업팀" : role === "management" ? "관리팀" : "대표자";
+
   async function handleLogout() {
-    await logout();
-    router.push("/login");
+    await signOut({ callbackUrl: "/login" });
   }
 
   return (
@@ -86,39 +86,7 @@ export default function Sidebar() {
 
       <div className="p-4 border-t border-slate-700 space-y-3">
         <div className="text-xs text-slate-400">
-          현재: {role === "sales" ? "영업팀" : role === "management" ? "관리팀" : "대표자"}
-        </div>
-        <div className="grid grid-cols-3 gap-2">
-          <button
-            onClick={() => setRole("sales")}
-            className={`text-xs py-2 rounded transition-colors ${
-              role === "sales"
-                ? "bg-blue-600 text-white"
-                : "bg-slate-700 text-slate-300 hover:bg-slate-600"
-            }`}
-          >
-            영업팀
-          </button>
-          <button
-            onClick={() => setRole("management")}
-            className={`text-xs py-2 rounded transition-colors ${
-              role === "management"
-                ? "bg-blue-600 text-white"
-                : "bg-slate-700 text-slate-300 hover:bg-slate-600"
-            }`}
-          >
-            관리팀
-          </button>
-          <button
-            onClick={() => setRole("admin")}
-            className={`text-xs py-2 rounded transition-colors ${
-              role === "admin"
-                ? "bg-blue-600 text-white"
-                : "bg-slate-700 text-slate-300 hover:bg-slate-600"
-            }`}
-          >
-            대표자
-          </button>
+          {session?.user?.name} ({roleLabel})
         </div>
         <button
           onClick={handleLogout}

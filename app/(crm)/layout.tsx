@@ -1,19 +1,28 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import SessionProvider from "@/components/SessionProvider";
 import Sidebar from "@/components/Sidebar";
 
-export default function CRMLayout({
+export default async function CRMLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+  if (!session) redirect("/login");
+
   return (
-    <div className="min-h-screen flex bg-slate-50">
-      <Sidebar />
-      <main className="flex-1 flex flex-col">
-        <header className="bg-white border-b border-slate-200 px-8 py-4">
-          <h2 className="text-lg font-semibold text-slate-800">SJPARTNERS</h2>
-        </header>
-        <div className="flex-1 overflow-auto p-8">{children}</div>
-      </main>
-    </div>
+    <SessionProvider session={session}>
+      <div className="min-h-screen flex bg-slate-50">
+        <Sidebar />
+        <main className="flex-1 flex flex-col">
+          <header className="bg-white border-b border-slate-200 px-8 py-4">
+            <h2 className="text-lg font-semibold text-slate-800">SJPARTNERS 내부 전산</h2>
+          </header>
+          <div className="flex-1 overflow-auto p-8">{children}</div>
+        </main>
+      </div>
+    </SessionProvider>
   );
 }
